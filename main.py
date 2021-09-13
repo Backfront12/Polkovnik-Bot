@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #@Cadet_Helper_bot
-#import telethon
+#import telethon(soon...)
 import telebot
 import config
 import random
@@ -10,8 +10,8 @@ import random
 from telebot import types
 
 bot = telebot.TeleBot(config.TOKEN)
-#Добавляем кнопки и клавиатуры
-#(Выбор пришедших офицеров)
+#Adding new buttons and keyboards
+#Keyboard for arrived people
 who = types.InlineKeyboardMarkup(row_width=3)
 button1 = types.InlineKeyboardButton("name", callback_data='NK')
 button2 = types.InlineKeyboardButton("name", callback_data='tup')
@@ -20,8 +20,8 @@ button4 = types.InlineKeyboardButton("name", callback_data='fat')
 button5 = types.InlineKeyboardButton("name", callback_data='poh')
 button6 = types.InlineKeyboardButton("name", callback_data='pzdc')
 button7 = types.InlineKeyboardButton("name", callback_data='nothing')
-#Добавляем наши кнокпи в созданную клавиатуру
-#Добавляем вторую клавиатуру(Выбор ушедших офицеров)...
+#Adding our buttons to our new keyboard
+#Adding another buttons and keyboard for leaved people
 who.add(button1, button2, button3, button4, button5, button6, button7)
 who1 = types.InlineKeyboardMarkup(row_width=3)
 button11 = types.InlineKeyboardButton("name", callback_data='NK1')
@@ -31,17 +31,19 @@ button41 = types.InlineKeyboardButton("name", callback_data='fat1')
 button51 = types.InlineKeyboardButton("name", callback_data='poh1')
 button61 = types.InlineKeyboardButton("name", callback_data='pzdc1')
 button71 = types.InlineKeyboardButton("name", callback_data='nothing1')
-#Так же добавляем кнопки в нашу клавиатуру.
+#Adding new buttons to the last keyboard
 who1.add(button11, button21, button31, button41, button51, button61, button71)
-#Создаем список и счётчик
+#Creating list and counter
 Whoisthere = []
 counter = int(0)
-#Ещё одна клавиатура(Главное меню)...
+#Another one keyboard
 markup = types.InlineKeyboardMarkup(row_width=3)
 item1 = types.InlineKeyboardButton("Выбери случайный номер!🎲", callback_data="random")
 item2 = types.InlineKeyboardButton("Вольно!", callback_data='At_ease')
 item3 = types.InlineKeyboardButton("Обстановка", callback_data='kurs')
 markup.add(item1, item2, item3)
+#Creating a command handler
+#Adding commands to handler
 @bot.message_handler(commands=['help', 'smirno', 'chat_id'])
 def comms(message):
     try:
@@ -72,7 +74,7 @@ def at_ease(message):
                              parse_mode='html', reply_markup=markup)
     except Exception as e:
         print(repr(e))
-
+#We used some new buttons in last actions and now we must use the call data of this buttons
 @bot.callback_query_handler(func=lambda call: True)
 def comrep(call):
     global Whoisthere
