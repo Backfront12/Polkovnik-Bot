@@ -81,20 +81,20 @@ def comrep(call):
     global counter
     try:
         if call.message:
-            # Рандомное число
+            # random number
             if call.data == 'random':
                 bot.send_message(call.message.chat.id, str(random.randint(1, 15)))
                 bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id, reply_markup='')
                 bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                               reply_markup=markup)
-                # Вольно
+                # At ease
             elif call.data == 'At_ease':
                 bot.send_message(call.message.chat.id, "ЧАТ, РАССОС!")
                 bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                               reply_markup='')
                 bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                               reply_markup=markup)
-                # обстановка
+                # situation
             elif call.data == 'kurs':
                 bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                               reply_markup='')
@@ -108,7 +108,7 @@ def comrep(call):
                 bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                               reply_markup='')
                 bot.send_message(call.message.chat.id, "Кто пришёл?", reply_markup=who)
-            # Прописываю логику кнопок выбора офицера
+            # The logic of choice
             elif call.data == 'kto':
                 bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                               reply_markup='')
