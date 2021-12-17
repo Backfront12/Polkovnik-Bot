@@ -4,5 +4,5 @@ In "config.py" write:<<TOKEN = '(set your token from @father_bot)'>>
 
 Then
 
-Use this terminal command before usig a bot:
+Use this terminal command before using a bot:
 <your_directory>pip install pyTelegramBotAPI
