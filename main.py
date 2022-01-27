@@ -38,9 +38,9 @@ Whoisthere = []
 counter = int(0)
 #Another one keyboard
 markup = types.InlineKeyboardMarkup(row_width=3)
-item1 = types.InlineKeyboardButton("Выбери случайный номер!🎲", callback_data="random")
-item2 = types.InlineKeyboardButton("Вольно!", callback_data='At_ease')
-item3 = types.InlineKeyboardButton("Обстановка", callback_data='kurs')
+item1 = types.InlineKeyboardButton("Choose random number!🎲", callback_data="random")
+item2 = types.InlineKeyboardButton("At Ease!", callback_data='At_ease')
+item3 = types.InlineKeyboardButton("Report", callback_data='kurs')
 markup.add(item1, item2, item3)
 #Creating a command handler
 #Adding commands to handler
@@ -50,12 +50,12 @@ def comms(message):
         if '/help' in message.text:
             sti = open('sticker_directory.webp', 'rb')
             bot.send_sticker(message.chat.id, sti)
-            bot.send_message(message.chat.id, '/help - доступные команды\n/smirno - подать команду смирно для дежурного')
+            bot.send_message(message.chat.id, '/help - command list\n/smirno - Attention command')
         elif '/smirno' in message.text:
-            sti = open('sticker_directory.tgs', 'rb')
+            sti = open('some_sticker.tgs', 'rb')
             bot.send_sticker(message.chat.id, sti)
             bot.send_message(message.chat.id,
-                             "Товарищ {0.first_name} {0.last_name}, во время моего дежурства происшествий не случилось.\nЧат рассасывается сгласно распорядка дня.\nДежурный по чату, полковник <b>{1.first_name}</b> \n Какие указания?".format(
+                             "Товарищ {0.first_name} {0.last_name}, Some report.\nAnother part of report.\nSome bot <b>{1.first_name}</b> \n Is reporting. At your service".format(
                                  message.from_user, bot.get_me()),
                              parse_mode='html', reply_markup=markup)
         elif '/chat_id' in message.text:
@@ -65,11 +65,11 @@ def comms(message):
 @bot.message_handler(content_types=['text'])
 def at_ease(message):
     try:
-        if 'вольно' in message.text:
-            bot.send_message(message.chat.id, "ЧАТ, РАССОС!!!")
-        elif 'дежурный' in message.text.lower():
+        if 'At ease' in message.text:
+            bot.send_message(message.chat.id, "Chat, At Ease!!!")
+        elif 'Call bot' in message.text.lower():
             bot.send_message(message.chat.id,
-                             "Я, полковник {1.first_name}!".format(
+                             "I am {1.first_name}!".format(
                                  message.from_user, bot.get_me()),
                              parse_mode='html', reply_markup=markup)
     except Exception as e:
@@ -89,7 +89,7 @@ def comrep(call):
                                               reply_markup=markup)
                 # At ease
             elif call.data == 'At_ease':
-                bot.send_message(call.message.chat.id, "ЧАТ, РАССОС!")
+                bot.send_message(call.message.chat.id, "Chat, At ease!")
                 bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                               reply_markup='')
                 bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id,
@@ -99,11 +99,11 @@ def comrep(call):
                 bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                               reply_markup='')
                 reportkb = types.InlineKeyboardMarkup(row_width=1)
-                whocame = types.InlineKeyboardButton("Кто-то пришёл", callback_data="came")
-                wholeave = types.InlineKeyboardButton("Кто-то убыл", callback_data="leave")
-                ktoest = types.InlineKeyboardButton("Обстановка???", callback_data='kto')
+                whocame = types.InlineKeyboardButton("Somebody came", callback_data="came")
+                wholeave = types.InlineKeyboardButton("Somebody arrived", callback_data="leave")
+                ktoest = types.InlineKeyboardButton("What's up???", callback_data='kto')
                 reportkb.add(whocame, wholeave, ktoest)
-                bot.send_message(call.message.chat.id, 'Кто есть? Ща подобъём...', reply_markup=reportkb)
+                bot.send_message(call.message.chat.id, 'Who is there?...', reply_markup=reportkb)
             elif call.data == 'came':
                 bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                               reply_markup='')
